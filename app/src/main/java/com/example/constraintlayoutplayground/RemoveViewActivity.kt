@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
@@ -13,7 +14,7 @@ import com.example.constraintlayoutplayground.databinding.ConstraintLayoutCanvas
 
 private const val TAG = "RemoveViewActivity"
 
-class RemoveViewActivity : AppCompatActivity() {
+class RemoveViewActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var binding: ActivityRemoveViewBinding
     //private var viewList = ArrayList<Int>()
@@ -26,6 +27,7 @@ class RemoveViewActivity : AppCompatActivity() {
         setContentView(view)
         initClickListeners()
     }
+
 
     private fun initClickListeners() {
         binding.apply {
@@ -46,6 +48,7 @@ class RemoveViewActivity : AppCompatActivity() {
                 val index = editText.text.toString().toInt()
                 rearrangeConstraints(index)
                 val view = findViewById<ConstraintLayout>(viewIdList[index])
+                view.setOnClickListener(null)
                 parentLayout.removeView(view)
                 viewIdList.removeAt(index)
             } catch (e: Exception) {
@@ -82,6 +85,7 @@ class RemoveViewActivity : AppCompatActivity() {
                         endToEnd = parentLayout.id
                         marginEnd = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
+                    layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
 
@@ -99,6 +103,8 @@ class RemoveViewActivity : AppCompatActivity() {
                         topMargin = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
 
+                    layout.setOnClickListener(this@RemoveViewActivity)
+
                     parentLayout.addView(layout)
 
                 }
@@ -115,6 +121,8 @@ class RemoveViewActivity : AppCompatActivity() {
                         topMargin = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
 
+                    layout.setOnClickListener(this@RemoveViewActivity)
+
                     parentLayout.addView(layout)
                 }
 
@@ -129,6 +137,8 @@ class RemoveViewActivity : AppCompatActivity() {
                         endToEnd = viewIdList[2]
                         topMargin = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
+
+                    layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
                 }
@@ -145,6 +155,8 @@ class RemoveViewActivity : AppCompatActivity() {
                         marginEnd = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
 
+                    layout.setOnClickListener(this@RemoveViewActivity)
+
                     parentLayout.addView(layout)
                 }
 
@@ -159,6 +171,8 @@ class RemoveViewActivity : AppCompatActivity() {
                         bottomToBottom = viewIdList[4]
                         marginEnd = resources.getDimensionPixelSize(R.dimen._20dp)
                     }
+
+                    layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
                 }
@@ -261,6 +275,17 @@ class RemoveViewActivity : AppCompatActivity() {
                 marginEnd = resources.getDimensionPixelSize(R.dimen._20dp)
                 topMargin = ConstraintLayout.LayoutParams.UNSET
             }
+        }
+    }
+
+    override fun onClick(v: View) {
+        when(v.id){
+            viewIdList[0] -> Toast.makeText(this, "First Multi", Toast.LENGTH_SHORT).show()
+            viewIdList[1] -> Toast.makeText(this, "Second Multi", Toast.LENGTH_SHORT).show()
+            viewIdList[2] -> Toast.makeText(this, "Third Multi", Toast.LENGTH_SHORT).show()
+            viewIdList[3] -> Toast.makeText(this, "Fourth Multi", Toast.LENGTH_SHORT).show()
+            viewIdList[4] -> Toast.makeText(this, "Fifth Multi", Toast.LENGTH_SHORT).show()
+            viewIdList[5] -> Toast.makeText(this, "Sixth Multi", Toast.LENGTH_SHORT).show()
         }
     }
 
