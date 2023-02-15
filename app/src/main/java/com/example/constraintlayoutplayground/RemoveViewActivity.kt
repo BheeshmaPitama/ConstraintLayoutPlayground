@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
@@ -88,6 +89,8 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyVerticalAdditionAnimationToView(layout)
+
 
                 }
 
@@ -106,6 +109,7 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyVerticalAdditionAnimationToView(layout)
 
                 }
 
@@ -124,6 +128,7 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyVerticalAdditionAnimationToView(layout)
                 }
 
                 3 -> {
@@ -141,6 +146,7 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyVerticalAdditionAnimationToView(layout)
                 }
 
                 4 -> {
@@ -158,6 +164,7 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyHorizontalAdditionAnimationToView(layout)
                 }
 
                 5 -> {
@@ -175,6 +182,8 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                     layout.setOnClickListener(this@RemoveViewActivity)
 
                     parentLayout.addView(layout)
+                    applyHorizontalAdditionAnimationToView(layout)
+
                 }
 
                 else -> Toast.makeText(this@RemoveViewActivity, "Only 6 People Allowed in A Party!", Toast.LENGTH_SHORT).show()
@@ -287,6 +296,15 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
             viewIdList[4] -> Toast.makeText(this, "Fifth Multi", Toast.LENGTH_SHORT).show()
             viewIdList[5] -> Toast.makeText(this, "Sixth Multi", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun applyVerticalAdditionAnimationToView(layout: View) {
+        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_down)
+        layout.startAnimation(animation)
+    }
+    private fun applyHorizontalAdditionAnimationToView(layout: View) {
+        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_right)
+        layout.startAnimation(animation)
     }
 
 
