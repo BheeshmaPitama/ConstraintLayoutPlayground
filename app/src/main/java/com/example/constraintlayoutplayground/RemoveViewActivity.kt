@@ -55,6 +55,7 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
             } catch (e: Exception) {
                 Toast.makeText(this@RemoveViewActivity, "Index Out Of Bounds!", Toast.LENGTH_SHORT)
                     .show()
+                Log.d(TAG, "removeConstraintLayout: $e")
             }
         }
     }
@@ -299,11 +300,11 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun applyVerticalAdditionAnimationToView(layout: View) {
-        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_down)
+        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_up_in)
         layout.startAnimation(animation)
     }
     private fun applyHorizontalAdditionAnimationToView(layout: View) {
-        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_right)
+        val animation = AnimationUtils.loadAnimation(this@RemoveViewActivity, R.anim.slide_right_in)
         layout.startAnimation(animation)
     }
 
