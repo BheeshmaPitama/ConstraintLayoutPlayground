@@ -3,9 +3,12 @@ package com.example.constraintlayoutplayground
 import android.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -50,6 +53,12 @@ class RemoveViewActivity : AppCompatActivity(), OnClickListener {
                 rearrangeConstraints(index)
                 val view = findViewById<ConstraintLayout>(viewIdList[index])
                 view.setOnClickListener(null)
+
+                val transition = AutoTransition()
+                transition.duration = 500
+                transition.interpolator = AccelerateDecelerateInterpolator()
+
+                TransitionManager.beginDelayedTransition(parentLayout,transition)
                 parentLayout.removeView(view)
                 viewIdList.removeAt(index)
             } catch (e: Exception) {
